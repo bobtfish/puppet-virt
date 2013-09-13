@@ -155,10 +155,10 @@ Puppet::Type.type(:virt).provide(:libvirt) do
     parameters = ""
     parameters.concat(",model=virtio") if resource[:virtio_for_net] == 'true'
 
-    filterrefs = resource[:filterrefs]
+    filterrefs = resource[:clean_traffic]
     unless filterrefs.nil?
-      filerrefs.each { |filterref| network << ["--filterref ",filterref] }
-      parameters.concat(",filterref")
+      filerrefs.each { |filterref| network << ["--filterref",filterref] }
+      parameters.concat(",filterref=clean_traffic")
     end
 
     iface = resource[:interfaces]

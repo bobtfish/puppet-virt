@@ -10,7 +10,7 @@ class kvm-guests {
     virtio_for_disks => 'true',
     virtio_for_net => 'true',
     interfaces => ["br1", "br2"],
-    filterrefs => ["br1=IP=10.0.0.1,IP=10.0.0.2","br2=IP=10.0.0.3,IP=10.0.0.4"],
+    clean_traffic => ["br1=IP=10.0.0.1,IP=10.0.0.2","br2=IP=10.0.0.3,IP=10.0.0.4"],
     cpus      => 2,
     ensure    => running,
     virt_type => 'kvm'
