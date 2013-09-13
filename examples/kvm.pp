@@ -9,7 +9,8 @@ class kvm-guests {
     virt_disks => {"/tmp/disk1.qcow2" => 2, "/tmp/disk2.qcow2" => 3 },
     virtio_for_disks => 'true',
     virtio_for_net => 'true',
-    #interfaces => ["br1"],
+    interfaces => ["br1", "br2"],
+    filterrefs => ["br1=IP=10.0.0.1,IP=10.0.0.2","br2=IP=10.0.0.3,IP=10.0.0.4"],
     cpus      => 2,
     ensure    => running,
     virt_type => 'kvm'

@@ -150,10 +150,16 @@ Puppet::Type.type(:virt).provide(:libvirt) do
 
   # Creates network arguments for virt-install command
   def network
-    debug "Network paramenters"
+    debug "Network parameters"
     network = []
     parameters = ""
     parameters.concat(",model=virtio") if resource[:virtio_for_net] == 'true'
+
+    filterrefs = resource[:filterrefs]
+    unless filterrefs.nil?
+      filerrefs.each { |filterref| network << ["--filterref ",filterref] }
+      parameters.concat(",filterref")
+    end
 
     iface = resource[:interfaces]
     case iface
