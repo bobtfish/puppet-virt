@@ -402,7 +402,7 @@ Image files must end with `*.img`, `*.qcow` or `*.qcow2`"
       desc "Using virtio for network devices"
     end
     newparam(:smbios) do
-      desc "Using virtio for network devices"
+      desc "Smbios options"
     end
 
     newproperty(:quotatime, :parent => VirtNumericParam, :required_features => :disk_quota) do
