@@ -393,7 +393,7 @@ Image files must end with `*.img`, `*.qcow` or `*.qcow2`"
       desc "Additional disks"
     end
     newparam(:disks_format) do
-      desc "Additional disks"
+      desc "Define image format of disks"
     end
     newparam(:virtio_for_disks) do
       desc "Using virtio for block devices"
