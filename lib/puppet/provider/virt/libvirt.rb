@@ -103,7 +103,7 @@ Puppet::Type.type(:virt).provide(:libvirt) do
     max_cpus = Facter.value('processorcount')
     arguments << ["--vcpus=#{resource[:cpus]},maxvcpus=#{max_cpus}"]
 
-    arguments << diskargs << additional_diskargs
+    arguments << diskargs << additional_diskargs << smbios
 
     if resource[:boot_location]
       fail "To use 'boot_location', you need to specify the 'virt_path' parameter." if resource[:virt_path].nil?
@@ -123,6 +123,14 @@ Puppet::Type.type(:virt).provide(:libvirt) do
     end
 
     arguments
+  end
+  def smbios
+    args = []
+    parameters = resource[:smbios]
+    parameters.each do |key,value|
+      args << ["--smbios"] << ["#{key}=#{value}"]
+    end
+    args  
   end
   def create_disks
     # Primary disk / Legacy virt_path option
