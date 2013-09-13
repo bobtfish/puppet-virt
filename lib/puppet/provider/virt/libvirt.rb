@@ -157,8 +157,8 @@ Puppet::Type.type(:virt).provide(:libvirt) do
 
     filterrefs = resource[:clean_traffic]
     unless filterrefs.nil?
-      filerrefs.each { |filterref| network << ["--filterref",filterref] }
-      parameters.concat(",filterref=clean_traffic")
+      filterrefs.each { |filterrefs| network << ["--filterref",filterrefs] }
+      parameters.concat(",filterref=clean-traffic")
     end
 
     iface = resource[:interfaces]
@@ -199,6 +199,15 @@ Puppet::Type.type(:virt).provide(:libvirt) do
   #TODO the Libvirt biding for ruby doesnt support this feature
   def interfaces=(value)
     warnonce "It is not possible to change interfaces settings for an existing guest."
+  end
+
+  def clean_traffic
+    warnonce "It is not possible to change filter settings for an existing guest - yet ;)"
+    resource[:clean_traffic]
+  end
+
+  def clean_traffic=(value)
+    warnonce "It is not possible to change filter settings for an existing guest - yet :("
   end
 
   # Setup the virt-install graphic configuration arguments
