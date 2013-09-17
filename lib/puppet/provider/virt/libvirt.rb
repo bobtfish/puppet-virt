@@ -143,6 +143,7 @@ Puppet::Type.type(:virt).provide(:libvirt) do
       size = resource[:disk_size].split('=')[1]
       args = ["create"]
       args << ["-f"+resource[:disks_format]] if resource[:disks_format] 
+      args << ["-opreallocation="+resource[:qcow2_preallocation]] if resource[:qcow2_preallocation]
       args << path << "#{size}G"
       qemu_img args
     end
@@ -153,6 +154,7 @@ Puppet::Type.type(:virt).provide(:libvirt) do
     disks.each do |path,size|
       args = ["create"]
       args << ["-f"+resource[:disks_format]] if resource[:disks_format] 
+      args << ["-opreallocation="+resource[:qcow2_preallocation]] if resource[:qcow2_preallocation]
       args << path << "#{size}G"
       qemu_img args
     end

@@ -9,6 +9,7 @@ class kvm-guests {
     #virt_disks => {"/tmp/disk1.qcow2" => 2, "/tmp/disk2.qcow2" => 3 },
     disks_format => 'qcow2',
     disks_cache  => 'none',
+    qcow2_preallocation => 'metadata',
     virtio_for_disks => 'true',
     virtio_for_net => 'true',
     interfaces => ["br1", "br2"],
